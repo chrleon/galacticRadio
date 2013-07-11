@@ -20,13 +20,15 @@ class Star {
   void display() { // drawmethod
   mouseZ = map(mouseX, 100, width, -500, 530);   
   translate(xpos, ypos, 0);
-  rotateY(radians(mouseY));
-  //rotateX(radians(mouseX));
-
+  rotateY(radians(mouseX));
+  noFill();
+  stroke(1);
+  box(45);
+  noStroke();
+  
   pushMatrix();  
-  translate(30, 30, 200);
   //rotateX(radians(mouseX*-1));
-  rotateY(radians(mouseY*-1));
+  rotateY(radians(mouseX));
   fill(0,0,100,.2);
   ellipse(0, 0, 25, 25);
   fill(0,0,100);

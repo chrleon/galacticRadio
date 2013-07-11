@@ -4,7 +4,8 @@ Table starData;
 
 
 void setup(){
-  size(1280,699, P3D); // 699 so that I can screencapture including the chrome at the top and still get a 720P file
+//  size(1280,699, P3D); // 699 so that I can screencapture including the chrome at the top and still get a 720P file
+  size(256,256, P3D); // 699 so that I can screencapture including the chrome at the top and still get a 720P file
   lights();
   
   colorMode(HSB,1,1,1,1);

@@ -1,3 +1,5 @@
 # For LibreOffice lockfiles
 .~lock*
-.DS_Store
+.DS_Store*
+web-export*
+*.properties
