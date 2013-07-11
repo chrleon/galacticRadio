@@ -1,0 +1,3 @@
+# For LibreOffice lockfiles
+.~lock*
+.DS_Store
