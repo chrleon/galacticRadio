@@ -1,8 +1,12 @@
+
+
 class Star {
+
+
   color c;
-  float xpos;
-  float ypos;
-  float zpos;
+  float starX;
+  float starY;
+  float starZ;
   float size;
   float mouseZ;
   
@@ -10,52 +14,71 @@ class Star {
 
   Star() { // constructor
     c = color(1);
-    xpos = width/2;
-    ypos = height/2;
-    zpos = mouseZ;
-    size = 40;
+    size = 5;
     noStroke();
-}
-  
-  void display() { // drawmethod
-  mouseZ = map(mouseX, 100, width, -500, 530);   
-  translate(xpos, ypos, 0);
-  rotateY(radians(mouseX));
-  noFill();
-  stroke(1);
-  box(45);
-  noStroke();
-  
-  pushMatrix();  
-  //rotateX(radians(mouseX*-1));
-  rotateY(radians(mouseX));
-  fill(0,0,100,.2);
-  ellipse(0, 0, 25, 25);
-  fill(0,0,100);
-  ellipse(0, 0, 15, 15);
-  
-  ellipse(50, 50, 17, 17);
-  popMatrix();
+    
+starData = loadTable("hygxyz-250stars.csv","header");
+
 
   
-    
 }
   
-  void rotate(){
+
+  
+  void display() { 
+  // drawmethod
+  
+    for (TableRow row : starData.rows()){
+      //float starID = row.getFloat("StarID");
+      //float HIP = row.getFloat("HIP");
+      //float HD = row.getFloat("HD");
+      //float HR = row.getFloat("HR");
+      //String gliese = row.getString("Gliese");
+      //String bayerFlamsteed= row.getString("BayerFlamsteed");
+      String properName = row.getString("ProperName");
+      //float RA = row.getFloat("RA");
+      //float dec = row.getFloat("Dec");
+      float distance = row.getFloat("Distance");
+      //float pmra = row.getFloat("PMRA");
+      //float pmdec = row.getFloat("PMDec");
+      //float RV = row.getFloat("RV");
+      //float magnitude = row.getFloat("Mag");
+      //float absoluteMagnitude = row.getFloat("AbsMag");
+      //float spectrum = row.getFloat("Spectrum");
+      float colorIndex = map(row.getFloat("ColorIndex"), -0.2, 2.2, -15, 15);
+      
+      starX = map(row.getFloat("X"), -25, 25, 0, width);
+      starY = map(row.getFloat("Y"), -25, 35, 0, height);
+      starZ = map(row.getFloat("Z"), -25, 25, 300, -500);
+      
+      pushMatrix();
+//      background(0);
+      translate(starX, starY, starZ);
+      fill(187+colorIndex, 13, 100, 0.1);
+      ellipse(0,0, size*5, size*5);
+      fill(187+colorIndex, 13, 100,1);
+      ellipse(0,0, size, size);
+      popMatrix();
+      
+      println(frameRate);
     
+    }
   }
   
-void stroke3d() { // Draw strokes in 3D - not working yet
-    stroke(53,98,95);
-    line(pmouseX,pmouseY,mouseZ, mouseX, mouseY, mouseZ);
-    if (!drag) {
-      noStroke();
-      println("gameover");  
-      return;
-    }  
+void rotate(){
+  float rotY = map(mouseX, 0, width, 0, TWO_PI);
+  
+  background(0);
+  pushMatrix();
+  rotateY(rotY);
+  this.display();
+  popMatrix();
+  
+}  
 }
   
-  
-}
+
+
+
 
 
