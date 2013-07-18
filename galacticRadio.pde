@@ -1,6 +1,12 @@
 Table starData;
 Star star;
 
+float eyeZ;
+
+PFont openSansLight24;
+PFont openSansLight14;
+PFont openSansLight8;
+
 
 
 void setup(){
@@ -13,12 +19,11 @@ void setup(){
 
 
 
-  lights();
 
   // cameradata
     float eyeX = width/2.0;
     float eyeY = height/2.0;
-    float eyeZ = 100;
+    float eyeZ = 0;
     float centerX = width/2.0; 
     float centerY = height/2.0; 
     float centerZ = 0;
@@ -48,16 +53,44 @@ void setup(){
 
 void draw(){
   background(0);
-
+  //lights();
 
   // sjekk array fra csv og tegn en ny stjerne på hvert punkt.  
   star.display();
+  
+  
 
 }
 
 void mouseDragged(){
-  //star.rotate(); 
+  // cameradata
+    float eyeX = width/2.0;
+    float eyeY = height/2.0;
+    eyeZ = map(mouseX,100, width-100, 3000, 7000);
+    float centerX = width/2.0; 
+    float centerY = height/2.0; 
+    float centerZ = 0;
+    float upX = 0;
+    float upY = 1;
+    float upZ = 0;
+
+
+  camera(
+    eyeX,
+    eyeY,
+    eyeZ,
+    centerX,
+    centerY,
+    centerZ,
+    upX,
+    upY,
+    upZ
+    );
+//println(mouseX);
+  
+
 }
+
 
 void mouseReleased(){
   }
