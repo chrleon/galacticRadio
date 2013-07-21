@@ -3,114 +3,124 @@ class Star {
   color hazeColor;
   float flicker;
   float colorIndex;
-  
+
+
+  // coordinates
   float starX;
   float starY;
   float starZ;
   float size;
   float mouseZ;
+  float distance;
+  String properName;
+  String gliese;
+  String bayerFlamsteed;
+  float oneparsecinLightyears = 3.26163344;
+  float maxDistance = 24.9314385440;
+  float zoomSpeed = 3;
 
-  float screenStarPosX;
-  float screenStarPosY;
-  float screenStarPosZ;
-  
+  // fonts
   color textColor = color(65, 17, 100);
-  int starTouchArea = 10;
-
-// fonts
-
+  int starTouchArea = 15;
 
   
-  
-  Star() { // constructor
-    starColor = color(187+colorIndex, 13, 1.0);
-    hazeColor = color(187+colorIndex, 13, 0.2);
-    
-    size = 3;
+  // constructor
+  Star() {
+
+    size = 5;
     noStroke();
+    sphereDetail(10);
+
+    textFont(openSansLight14);
+    textAlign(CENTER);
     
-    starData = loadTable("hygxyz-250stars.csv","header");
+    imageMode(CENTER);
+    
+    
+  }
 
-openSansLight24 = loadFont("fonts/OpenSans-Light-24.vlw");
-openSansLight14 = loadFont("fonts/OpenSans-Light-14.vlw");
-openSansLight8 = loadFont("fonts/OpenSans-Light-8.vlw");
 
-
-  
-}
-  
-
-  
-  void display() { 
   // drawmethod
-  
-    for (TableRow row : starData.rows()){
+  void display() {   
+    for (TableRow row : starData.rows()) {
       //float starID = row.getFloat("StarID");
       //float HIP = row.getFloat("HIP");
       //float HD = row.getFloat("HD");
       //float HR = row.getFloat("HR");
-      //String gliese = row.getString("Gliese");
-      //String bayerFlamsteed= row.getString("BayerFlamsteed");
-      String properName = row.getString("BayerFlamsteed");
-                          
+      gliese = row.getString("Gliese");
+      bayerFlamsteed = row.getString("BayerFlamsteed");
+      properName = row.getString("ProperName");
       //float RA = row.getFloat("RA");
       //float dec = row.getFloat("Dec");
-      float distance = row.getFloat("Distance");
       //float pmra = row.getFloat("PMRA");
       //float pmdec = row.getFloat("PMDec");
       //float RV = row.getFloat("RV");
       //float magnitude = row.getFloat("Mag");
       //float absoluteMagnitude = row.getFloat("AbsMag");
       //float spectrum = row.getFloat("Spectrum");
+      distance = round(row.getFloat("Distance") * oneparsecinLightyears);
+
+
+      if (properName.length() < 1) {
+        properName = row.getString("BayerFlamsteed");
+      }
+
+      if (properName.length() < 1) {
+        properName = row.getString("Gliese");
+      }
+
+            
       colorIndex = map(row.getFloat("ColorIndex"), -0.2, 2.2, -15, 15);
-      
-      starX = map(row.getFloat("X"), -25, 25, 0, width);
-      starY = map(row.getFloat("Y"), -25, 35, 0, height);
-      starZ = map(row.getFloat("Z"), -25, 25, 0, 7000);
-      
-      screenStarPosX = screenX(starY, starX, starZ);
-      screenStarPosX = screenY(starY, starX, starZ);
-      screenStarPosX = screenZ(starY, starX, starZ);
-      
-      
-      flicker = random(-80.0,0.0);
-      
+
+      starX = map(row.getFloat("X"), -24, 24, 0, width);
+      starY = map(row.getFloat("Y"), -24, 24, 0, height);
+      starZ = map(row.getFloat("Distance"), 0, 25, 7000, 0); 
+
+ flicker = random(-60.0, 0.0);
+
       pushMatrix();
         translate(starX, starY, starZ); // move the stars to their correct place in XYZ
-     
-          fill(187+colorIndex, 13, 100+flicker, 0.1); // halocolor
-          ellipse(0,0, size*2, size*2); // draw the halo
-          // draw the text
-          fill(0,0,100);
-          textFont(openSansLight24);
-          textAlign(CENTER);
-          text(properName, starX, starY, starZ);
+        starColor = color(53, 100, 100, 77);
+        hazeColor = color(53, 100, 100, 0.2);
+        //fill(starColor);
+        //ellipse(0, 0, 30, 30);
+        fill(60, 17, 100+flicker,1);
 
-          textFont(openSansLight14);
-          text(distance, starX, starY, starZ);
-
-     
-        fill(187+colorIndex, 13, 100+flicker, 1); // starcolor
-        ellipse(0,0, size, size); // draw the star
-        println(screenX(starX, starY, starZ) + " camera: " + eyeZ + " fps: " + frameRate);
+        image(starDisc, 0, 0, 5, 5);
+        //point(0, 0, 0);
+        
+        // check for mouseContact
+        if(  mouseX > screenX(0, 0, 0) - starTouchArea &&
+             mouseX < screenX(0, 0, 0) + starTouchArea &&
+             mouseY >= screenY(0, 0, 0) - starTouchArea &&
+             mouseY <= screenY(0, 0, 0) + starTouchArea) {
+               fill(100,0,100);
+               textSize(14);
+              
+              text("Starname: " + properName, 0, 10, 0);
+              text("Distance from Earth: " + distance + " lightyears", 0, 24, 0);
+             }
+             
       popMatrix();
-      
-    
     }
   }
-  
-void rotate(){
-  float rotY = map(mouseX, 0, width, 0, TWO_PI);
-  
-  background(0);
+
+
+void drawDistance(){
+  fill(190,100,100,0.3); 
   pushMatrix();
-  rotateY(rotY);
-  this.display();
+    rectMode(CENTER);
+    translate(0,0, eyeZ-500);
+    rect(0, 0, 550, 550);
   popMatrix();
-  
-}  
+    }
+
+void travel(){
 }
   
+
+}
+
 
 
 
