@@ -29,8 +29,6 @@ void setup(){
   star = new Star(); 
 
 
-    starData = loadTable("hygxyz-250stars.csv", "header");
-    starDisc = loadImage("img/stardisc.png");
     }
 
 
@@ -69,16 +67,17 @@ void draw(){
   
   // sjekk array fra csv og tegn en ny stjerne på hvert punkt.  
   star.display();
+    println(frameRate);
+    star.drawDistance();
   
   
 
 }
 
 void mouseDragged(){
-    //eyeZ = map(mouseX, 100, (width-100), 7070, 980);
-    eyeZ = eyeZ + (pmouseX- mouseX) * star.zoomSpeed;
+  eyeZ = eyeZ + (pmouseX - mouseX) * star.zoomSpeed;
     
-    println(eyeZ);
+    
   
 
 }

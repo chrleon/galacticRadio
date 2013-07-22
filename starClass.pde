@@ -36,6 +36,13 @@ class Star {
     
     imageMode(CENTER);
     
+    starData = loadTable("hygxyz-3000stars.csv", "header");
+    starDisc = loadImage("img/stardisc.png");
+
+  // audio
+
+
+
     
   }
 
@@ -69,6 +76,11 @@ class Star {
         properName = row.getString("Gliese");
       }
 
+      if (properName.length() < 1) {
+        properName = row.getString("StarID");
+      }
+
+
             
       colorIndex = map(row.getFloat("ColorIndex"), -0.2, 2.2, -15, 15);
 
@@ -84,7 +96,7 @@ class Star {
         hazeColor = color(53, 100, 100, 0.2);
         //fill(starColor);
         //ellipse(0, 0, 30, 30);
-        fill(60, 17, 100+flicker,1);
+        //tint(60, 17, 100+flicker,1);
 
         image(starDisc, 0, 0, 5, 5);
         //point(0, 0, 0);
@@ -107,16 +119,13 @@ class Star {
 
 
 void drawDistance(){
-  fill(190,100,100,0.3); 
+//  fill(190,100,100,0.9); 
   pushMatrix();
-    rectMode(CENTER);
     translate(0,0, eyeZ-500);
-    rect(0, 0, 550, 550);
+    rect(0, height-200, width, 100);
   popMatrix();
     }
 
-void travel(){
-}
   
 
 }
