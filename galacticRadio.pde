@@ -28,7 +28,6 @@ void setup(){
 
   star = new Star(); 
 
-
     }
 
 
@@ -67,7 +66,7 @@ void draw(){
   
   // sjekk array fra csv og tegn en ny stjerne på hvert punkt.  
   star.display();
-    println(frameRate);
+    //println(frameRate);
     star.drawDistance();
   
   
@@ -77,13 +76,6 @@ void draw(){
 void mouseDragged(){
   eyeZ = eyeZ + (pmouseX - mouseX) * star.zoomSpeed;
     
-    
-  
-
 }
-
-
-void mouseReleased(){
-  }
 
 

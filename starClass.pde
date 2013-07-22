@@ -4,6 +4,10 @@ class Star {
   float flicker;
   float colorIndex;
 
+  // information
+  String starname;
+  String starDistance;
+  String message;
 
   // coordinates
   float starX;
@@ -12,12 +16,15 @@ class Star {
   float size;
   float mouseZ;
   float distance;
+  float distanceFromSol;
+  int distanceinLightYears;
   String properName;
   String gliese;
   String bayerFlamsteed;
   float oneparsecinLightyears = 3.26163344;
   float maxDistance = 24.9314385440;
   float zoomSpeed = 3;
+  float absoluteMagnitude;
 
   // fonts
   color textColor = color(65, 17, 100);
@@ -50,21 +57,10 @@ class Star {
   // drawmethod
   void display() {   
     for (TableRow row : starData.rows()) {
-      //float starID = row.getFloat("StarID");
-      //float HIP = row.getFloat("HIP");
-      //float HD = row.getFloat("HD");
-      //float HR = row.getFloat("HR");
       gliese = row.getString("Gliese");
       bayerFlamsteed = row.getString("BayerFlamsteed");
       properName = row.getString("ProperName");
-      //float RA = row.getFloat("RA");
-      //float dec = row.getFloat("Dec");
-      //float pmra = row.getFloat("PMRA");
-      //float pmdec = row.getFloat("PMDec");
-      //float RV = row.getFloat("RV");
-      //float magnitude = row.getFloat("Mag");
-      //float absoluteMagnitude = row.getFloat("AbsMag");
-      //float spectrum = row.getFloat("Spectrum");
+      absoluteMagnitude = map(row.getFloat("AbsMag"), -1, 20, 0, 100);
       distance = round(row.getFloat("Distance") * oneparsecinLightyears);
 
 
@@ -80,38 +76,43 @@ class Star {
         properName = row.getString("StarID");
       }
 
-
-            
-      colorIndex = map(row.getFloat("ColorIndex"), -0.2, 2.2, -15, 15);
-
+      // star coordinates
       starX = map(row.getFloat("X"), -24, 24, 0, width);
       starY = map(row.getFloat("Y"), -24, 24, 0, height);
-      starZ = map(row.getFloat("Distance"), 0, 25, 7000, 0); 
+      starZ = map(row.getFloat("Distance"), 0, 25, 0, 7000); 
 
- flicker = random(-60.0, 0.0);
+     flicker = random(-80.0, 0.0);
 
       pushMatrix();
         translate(starX, starY, starZ); // move the stars to their correct place in XYZ
-        starColor = color(53, 100, 100, 77);
-        hazeColor = color(53, 100, 100, 0.2);
-        //fill(starColor);
-        //ellipse(0, 0, 30, 30);
-        //tint(60, 17, 100+flicker,1);
-
-        image(starDisc, 0, 0, 5, 5);
-        //point(0, 0, 0);
-        
+        starColor = color(53+random(-5,5), 100-absoluteMagnitude, 100+flicker);
+        fill(starColor);
+            image(starDisc, 0, 0, size, size);
+            //point(0, 0, 0);
+        message = "";
         // check for mouseContact
         if(  mouseX > screenX(0, 0, 0) - starTouchArea &&
              mouseX < screenX(0, 0, 0) + starTouchArea &&
              mouseY >= screenY(0, 0, 0) - starTouchArea &&
-             mouseY <= screenY(0, 0, 0) + starTouchArea) {
-               fill(100,0,100);
-               textSize(14);
+             mouseY <= screenY(0, 0, 0) + starTouchArea &&
+             starZ >= eyeZ - 1000) 
+             {
               
-              text("Starname: " + properName, 0, 10, 0);
-              text("Distance from Earth: " + distance + " lightyears", 0, 24, 0);
-             }
+              
+              message = "This star is called " + properName + " and is located " + distance + " lightyears from our star, Sol";
+              pushMatrix(); // move the text to the front
+               fill(100,0,0);
+                  rectMode(CENTER);
+                    noStroke();
+                   rect(mouseX, 80, 100, 75);
+               fill(100,0,100);
+               textAlign(CENTER);
+               textSize(4);
+                  text("Starname: " + properName, 0, 7, 0);
+                  text("Distance from Earth: " + distance + " lightyears", 0, 11, 0);
+              popMatrix();
+            println(message);  
+           }
              
       popMatrix();
     }
@@ -121,9 +122,34 @@ class Star {
 void drawDistance(){
 //  fill(190,100,100,0.9); 
   pushMatrix();
-    translate(0,0, eyeZ-500);
-    rect(0, height-200, width, 100);
+    float depthRect = eyeZ - 61; // 61 is the place where the rectangle is closest to the camera without clipping.
+      distanceFromSol = map(eyeZ,7070,60,600,680);
+      translate(0, 25, depthRect);
+      noStroke();
+      fill(0, 0, 0, 0.9);
+      rectMode(CORNER);
+      rect(0, height/2-2, width, 100);
+      stroke(0,0,50);
+      strokeWeight(1);
+      line(0, height/2, width, height/2);
+      
+      strokeWeight(2);
+      stroke(53,100,100);
+      line(600, height/2+5, width-600, height/2+5);
+      fill(0);
+      ellipse(distanceFromSol, height/2+5, 2, 2);
+      fill(53,100,100,1);
+      ellipse(680,height/2+5,2,2);
+      
+      textSize(2);
+      textAlign(LEFT);
+      distanceinLightYears = (int) round(map(eyeZ,7070,60,82,0));
+      text("this.message + move rect farther up screen", 600, height/2);
+      text("You are now " + distanceinLightYears + " lightyears from home", 638, height/2+3);
+      text("Drag left and right to go home", 638, height/2+8);
+      println(mouseX + ":" + eyeZ);
   popMatrix();
+  println(absoluteMagnitude);
     }
 
   
