@@ -7,7 +7,21 @@ PFont openSansLight8;
 
 float eyeZ;
 
-  PImage starDisc;
+PImage starDisc;
+
+import ddf.minim.*;
+Minim minim;
+AudioPlayer radio0;
+AudioPlayer radio1;
+AudioPlayer radio2;
+AudioPlayer radio3;
+AudioPlayer radio4;
+AudioPlayer radio5;
+AudioPlayer radio6;
+AudioPlayer radio7;
+AudioPlayer radio8;
+AudioPlayer radio9;
+AudioPlayer ambient;
 
 
 void setup(){
@@ -15,18 +29,46 @@ void setup(){
   colorMode(HSB, 360, 100, 100, 1);
   eyeZ = 7070;
   
-//    openSansLight24 = createFont("fonts/OpenSans-Light-24.vlw", 24);
-//    openSansLight14 = createFont("fonts/OpenSans-Light-14.vlw", 14);
-//    openSansLight8 = createFont("fonts/OpenSans-Light-8.vlw", 8);
-//  textMode(SHAPE);
-
-    openSansLight24 = loadFont("fonts/OpenSans-Light-24.vlw");
-    openSansLight14 = loadFont("fonts/OpenSans-Light-14.vlw");
-    openSansLight8 = loadFont("fonts/OpenSans-Light-8.vlw");
-
-
+  openSansLight24 = loadFont("fonts/OpenSans-Light-24.vlw");
+  openSansLight14 = loadFont("fonts/OpenSans-Light-14.vlw");
+  openSansLight8 = loadFont("fonts/OpenSans-Light-8.vlw");
 
   star = new Star(); 
+
+
+// audio
+minim = new Minim(this);
+  radio0 = minim.loadFile("audio/2012-gotye-kimbrya.wav");
+  radio0.loop();
+
+  radio1 = minim.loadFile("audio/2008-flo-rida-low.wav");
+  radio1.loop();
+  
+  radio2 = minim.loadFile("audio/2003-50-cent-in-da-club.wav");
+  radio2.loop();
+  
+  radio3 = minim.loadFile("audio/1997-eltonjohn.wav");
+  radio3.loop();
+
+  radio4 = minim.loadFile("audio/1992-whitney.wav");
+  radio4.loop();
+
+  radio5 = minim.loadFile("audio/1987-bangles.wav");
+  radio5.loop();
+
+  radio6 = minim.loadFile("audio/1982-thriller.wav");
+  radio6.loop();
+
+  radio7 = minim.loadFile("audio/1978-beegees.wav");
+  radio7.loop();
+
+  radio8 = minim.loadFile("audio/1972-killing.wav");
+  radio8.loop();
+
+  radio9 = minim.loadFile("audio/1968-beatles.wav");
+  radio9.loop();
+
+
 
     }
 
@@ -68,6 +110,8 @@ void draw(){
   star.display();
     //println(frameRate);
     star.drawDistance();
+    //radio0.setVolume(star.radio0volume);
+    star.radioVolume();
   
   
 

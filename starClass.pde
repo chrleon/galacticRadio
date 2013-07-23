@@ -27,16 +27,28 @@ class Star {
   float absoluteMagnitude;
   
   // inforectangle
-  float topRect = (height/2-6);  
+  float topRect = (height/2-2);  
 
   // fonts
   color textColor = color(65, 17, 100);
   int starTouchArea = 15;
 
+  // audiocontrol
+  float radio0volume;
+  float radio1volume;
+  float radio2volume;
+  float radio3volume;
+  float radio4volume;
+  float radio5volume;
+  float radio6volume;
+  float radio7volume;
+  float radio8volume;
+  float radio9volume;
+  
   
   // constructor
   Star() {
-
+    
     size = 5;
     noStroke();
     sphereDetail(10);
@@ -145,16 +157,47 @@ void drawDistance(){
       textSize(2);
       textAlign(LEFT);
       distanceinLightYears = (int) round(map(eyeZ,7070,60,82,0));
-      text("this.message + move rect farther up screen", 600, height/2-2);
+     // text("this.message + move rect farther up screen", 600, height/2-2);
       text("You are now " + distanceinLightYears + " lightyears from home", 638, height/2+3);
       text("Drag left and right to go home", 638, height/2+8);
       text("Sol", 683, height/2+5.5);
       println(mouseX + ":" + eyeZ);
   popMatrix();
-  println(absoluteMagnitude);
+  println(eyeZ);
     }
 
+  void radioVolume(){
+    radio0volume = map(star.distanceinLightYears, 2, 0,-80, 6);
+    radio0.setGain(radio0volume);
   
+    radio1volume = map(star.distanceinLightYears, 5, 2, -80, 6);
+    radio1.setGain(radio1volume);
+  
+    radio2volume = map(star.distanceinLightYears, 10, 5, -80, 6);
+    radio2.setGain(radio2volume);
+  
+    radio3volume = map(star.distanceinLightYears, 15, 10,-80, 6);
+    radio3.setGain(radio3volume);
+  
+    radio4volume = map(star.distanceinLightYears, 20, 15,-80, 6);
+    radio4.setGain(radio4volume);
+  
+    radio5volume = map(star.distanceinLightYears, 25, 20,-80, 6);
+    radio5.setGain(radio5volume);
+  
+    radio6volume = map(star.distanceinLightYears, 30, 25,-80, 6);
+    radio6.setGain(radio6volume);
+  
+    radio7volume = map(star.distanceinLightYears, 35, 30,-80, 6);
+    radio7.setGain(radio7volume);
+  
+    radio8volume = map(star.distanceinLightYears, 40, 35,-80, 6);
+    radio8.setGain(radio8volume);
+  
+    radio9volume = map(star.distanceinLightYears, 45, 40,-80, 6);
+    radio9.setGain(radio9volume);
+  
+  }
 
 }
 
