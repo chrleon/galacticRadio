@@ -25,6 +25,9 @@ class Star {
   float maxDistance = 24.9314385440;
   float zoomSpeed = 3;
   float absoluteMagnitude;
+  
+  // inforectangle
+  float topRect = (height/2-6);  
 
   // fonts
   color textColor = color(65, 17, 100);
@@ -103,8 +106,6 @@ class Star {
               pushMatrix(); // move the text to the front
                fill(100,0,0);
                   rectMode(CENTER);
-                    noStroke();
-                   rect(mouseX, 80, 100, 75);
                fill(100,0,100);
                textAlign(CENTER);
                textSize(4);
@@ -128,15 +129,15 @@ void drawDistance(){
       noStroke();
       fill(0, 0, 0, 0.9);
       rectMode(CORNER);
-      rect(0, height/2-2, width, 100);
+      rect(0, topRect, width, 25);
       stroke(0,0,50);
       strokeWeight(1);
-      line(0, height/2, width, height/2);
+      line(0, topRect, width, topRect);
       
-      strokeWeight(2);
+      strokeWeight(3);
       stroke(53,100,100);
+      fill(0,0,0);
       line(600, height/2+5, width-600, height/2+5);
-      fill(0);
       ellipse(distanceFromSol, height/2+5, 2, 2);
       fill(53,100,100,1);
       ellipse(680,height/2+5,2,2);
@@ -144,9 +145,10 @@ void drawDistance(){
       textSize(2);
       textAlign(LEFT);
       distanceinLightYears = (int) round(map(eyeZ,7070,60,82,0));
-      text("this.message + move rect farther up screen", 600, height/2);
+      text("this.message + move rect farther up screen", 600, height/2-2);
       text("You are now " + distanceinLightYears + " lightyears from home", 638, height/2+3);
       text("Drag left and right to go home", 638, height/2+8);
+      text("Sol", 683, height/2+5.5);
       println(mouseX + ":" + eyeZ);
   popMatrix();
   println(absoluteMagnitude);
