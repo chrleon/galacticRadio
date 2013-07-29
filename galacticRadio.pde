@@ -21,6 +21,8 @@ AudioPlayer radio6;
 AudioPlayer radio7;
 AudioPlayer radio8;
 AudioPlayer radio9;
+AudioPlayer radio10;
+AudioPlayer radio11;
 AudioPlayer ambient;
 
 
@@ -68,6 +70,11 @@ minim = new Minim(this);
   radio9 = minim.loadFile("audio/1968-beatles.wav");
   radio9.loop();
 
+  radio10 = minim.loadFile("audio/1964-beachboys.wav");
+  radio10.loop();
+
+  radio11 = minim.loadFile("audio/moon.wav");
+  radio11.loop();
 
 
     }

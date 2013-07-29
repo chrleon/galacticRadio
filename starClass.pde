@@ -18,6 +18,7 @@ class Star {
   float distance;
   float distanceFromSol;
   int distanceinLightYears;
+  float floatDistanceinLightYears;
   String properName;
   String gliese;
   String bayerFlamsteed;
@@ -44,6 +45,8 @@ class Star {
   float radio7volume;
   float radio8volume;
   float radio9volume;
+  float radio10volume;
+  float radio11volume;
   
   
   // constructor
@@ -61,7 +64,6 @@ class Star {
     starData = loadTable("hygxyz-3000stars.csv", "header");
     starDisc = loadImage("img/stardisc.png");
 
-  // audio
 
 
 
@@ -157,6 +159,7 @@ void drawDistance(){
       textSize(2);
       textAlign(LEFT);
       distanceinLightYears = (int) round(map(eyeZ,7070,60,82,0));
+      floatDistanceinLightYears = round(map(eyeZ,7070,60,82,0));
      // text("this.message + move rect farther up screen", 600, height/2-2);
       text("You are now " + distanceinLightYears + " lightyears from home", 638, height/2+3);
       text("Drag left and right to go home", 638, height/2+8);
@@ -167,35 +170,41 @@ void drawDistance(){
     }
 
   void radioVolume(){
-    radio0volume = map(star.distanceinLightYears, 2, 0,-80, 6);
+    radio0volume = (float) map(star.distanceinLightYears, 2, 0,-80, 6);
     radio0.setGain(radio0volume);
   
-    radio1volume = map(star.distanceinLightYears, 5, 2, -80, 6);
+    radio1volume = (float) map(star.distanceinLightYears, 5, 2, -80, 6);
     radio1.setGain(radio1volume);
   
-    radio2volume = map(star.distanceinLightYears, 10, 5, -80, 6);
+    radio2volume = (float) map(star.distanceinLightYears, 10, 5, -80, 6);
     radio2.setGain(radio2volume);
   
-    radio3volume = map(star.distanceinLightYears, 15, 10,-80, 6);
+    radio3volume = (float) map(star.distanceinLightYears, 15, 10, -80, 6);
     radio3.setGain(radio3volume);
   
-    radio4volume = map(star.distanceinLightYears, 20, 15,-80, 6);
+    radio4volume = (float) map(star.distanceinLightYears, 20, 15, -80, 6);
     radio4.setGain(radio4volume);
   
-    radio5volume = map(star.distanceinLightYears, 25, 20,-80, 6);
+    radio5volume = (float) map(star.distanceinLightYears, 25, 20, -80, 6);
     radio5.setGain(radio5volume);
   
-    radio6volume = map(star.distanceinLightYears, 30, 25,-80, 6);
+    radio6volume = (float) map(star.distanceinLightYears, 30, 25, -80, 6);
     radio6.setGain(radio6volume);
   
-    radio7volume = map(star.distanceinLightYears, 35, 30,-80, 6);
+    radio7volume = (float) map(star.distanceinLightYears, 35, 30, -80, 6);
     radio7.setGain(radio7volume);
   
-    radio8volume = map(star.distanceinLightYears, 40, 35,-80, 6);
+    radio8volume = (float) map(star.distanceinLightYears, 40, 35, -80, 6);
     radio8.setGain(radio8volume);
   
-    radio9volume = map(star.distanceinLightYears, 45, 40,-80, 6);
+    radio9volume = (float) map(star.distanceinLightYears, 45, 40, -80, 6);
     radio9.setGain(radio9volume);
+  
+    radio10volume = (float) map(star.distanceinLightYears, 50, 45, -80, 6);
+    radio10.setGain(radio10volume);
+  
+    radio11volume = (float) map(star.distanceinLightYears, 55, 50, -80, 6);
+    radio11.setGain(radio11volume);
   
   }
 
