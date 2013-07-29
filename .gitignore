@@ -3,3 +3,5 @@
 .DS_Store*
 web-export*
 *.properties
+application.*
+*.zip
