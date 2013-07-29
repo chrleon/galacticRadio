@@ -34,19 +34,6 @@ class Star {
   color textColor = color(65, 17, 100);
   int starTouchArea = 15;
 
-  // audiocontrol
-  float radio0volume;
-  float radio1volume;
-  float radio2volume;
-  float radio3volume;
-  float radio4volume;
-  float radio5volume;
-  float radio6volume;
-  float radio7volume;
-  float radio8volume;
-  float radio9volume;
-  float radio10volume;
-  float radio11volume;
   
   
   // constructor
@@ -169,44 +156,7 @@ void drawDistance(){
   println(eyeZ);
     }
 
-  void radioVolume(){
-    radio0volume = (float) map(star.distanceinLightYears, 2, 0,-80, 6);
-    radio0.setGain(radio0volume);
-  
-    radio1volume = (float) map(star.distanceinLightYears, 5, 2, -80, 6);
-    radio1.setGain(radio1volume);
-  
-    radio2volume = (float) map(star.distanceinLightYears, 10, 5, -80, 6);
-    radio2.setGain(radio2volume);
-  
-    radio3volume = (float) map(star.distanceinLightYears, 15, 10, -80, 6);
-    radio3.setGain(radio3volume);
-  
-    radio4volume = (float) map(star.distanceinLightYears, 20, 15, -80, 6);
-    radio4.setGain(radio4volume);
-  
-    radio5volume = (float) map(star.distanceinLightYears, 25, 20, -80, 6);
-    radio5.setGain(radio5volume);
-  
-    radio6volume = (float) map(star.distanceinLightYears, 30, 25, -80, 6);
-    radio6.setGain(radio6volume);
-  
-    radio7volume = (float) map(star.distanceinLightYears, 35, 30, -80, 6);
-    radio7.setGain(radio7volume);
-  
-    radio8volume = (float) map(star.distanceinLightYears, 40, 35, -80, 6);
-    radio8.setGain(radio8volume);
-  
-    radio9volume = (float) map(star.distanceinLightYears, 45, 40, -80, 6);
-    radio9.setGain(radio9volume);
-  
-    radio10volume = (float) map(star.distanceinLightYears, 50, 45, -80, 6);
-    radio10.setGain(radio10volume);
-  
-    radio11volume = (float) map(star.distanceinLightYears, 55, 50, -80, 6);
-    radio11.setGain(radio11volume);
-  
-  }
+
 
 }
 

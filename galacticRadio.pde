@@ -9,21 +9,7 @@ float eyeZ;
 
 PImage starDisc;
 
-import ddf.minim.*;
-Minim minim;
-AudioPlayer radio0;
-AudioPlayer radio1;
-AudioPlayer radio2;
-AudioPlayer radio3;
-AudioPlayer radio4;
-AudioPlayer radio5;
-AudioPlayer radio6;
-AudioPlayer radio7;
-AudioPlayer radio8;
-AudioPlayer radio9;
-AudioPlayer radio10;
-AudioPlayer radio11;
-AudioPlayer ambient;
+
 
 
 void setup(){
@@ -36,48 +22,7 @@ void setup(){
   openSansLight8 = loadFont("fonts/OpenSans-Light-8.vlw");
 
   star = new Star(); 
-
-
-// audio
-minim = new Minim(this);
-  radio0 = minim.loadFile("audio/2012-gotye-kimbrya.wav");
-  radio0.loop();
-
-  radio1 = minim.loadFile("audio/2008-flo-rida-low.wav");
-  radio1.loop();
-  
-  radio2 = minim.loadFile("audio/2003-50-cent-in-da-club.wav");
-  radio2.loop();
-  
-  radio3 = minim.loadFile("audio/1997-eltonjohn.wav");
-  radio3.loop();
-
-  radio4 = minim.loadFile("audio/1992-whitney.wav");
-  radio4.loop();
-
-  radio5 = minim.loadFile("audio/1987-bangles.wav");
-  radio5.loop();
-
-  radio6 = minim.loadFile("audio/1982-thriller.wav");
-  radio6.loop();
-
-  radio7 = minim.loadFile("audio/1978-beegees.wav");
-  radio7.loop();
-
-  radio8 = minim.loadFile("audio/1972-killing.wav");
-  radio8.loop();
-
-  radio9 = minim.loadFile("audio/1968-beatles.wav");
-  radio9.loop();
-
-  radio10 = minim.loadFile("audio/1964-beachboys.wav");
-  radio10.loop();
-
-  radio11 = minim.loadFile("audio/moon.wav");
-  radio11.loop();
-
-
-    }
+}
 
 
 
@@ -118,7 +63,7 @@ void draw(){
     //println(frameRate);
     star.drawDistance();
     //radio0.setVolume(star.radio0volume);
-    star.radioVolume();
+   
   
   
 
