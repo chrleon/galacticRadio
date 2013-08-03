@@ -1,3 +1,7 @@
+import de.voidplus.leapmotion.*;
+LeapMotion leap;
+import development.*;
+
 Table starData;
 Star star;
 
@@ -22,7 +26,11 @@ void setup(){
   openSansLight8 = loadFont("fonts/OpenSans-Light-8.vlw");
 
   star = new Star(); 
+  
+  leap = new LeapMotion(this);
+
 }
+
 
 
 
@@ -30,6 +38,8 @@ void setup(){
 void draw(){
   background(0);
   lights();
+
+
 
   // cameradata
     float eyeX = width/2.0;
@@ -41,7 +51,24 @@ void draw(){
     float upY = 1;
     float upZ = 0;
 
+for (Hand hand : leap.getHands()){
+  //hand.draw();
+  float handRoll = hand.getRoll();
+  float handYaw = hand.getYaw();
+  float handPitch = hand.getPitch();
+  println(handRoll);
+  //eyeZ = eyeZ + (handRoll/5) * star.zoomSpeed;
+  //eyeZ = eyeZ + (handYaw/5) * star.zoomSpeed;
+  eyeZ = eyeZ + ((handPitch/5*-1)) * star.zoomSpeed;
+}
 
+for (Finger finger : leap.getFingers()){
+  //finger.draw();
+  int fingerID = finger.getId();
+  PVector fingerDirection = finger.getDirection();
+  //centerX = fingerDirection.x*10;
+  //centerY = fingerDirection.y*10;
+}
 
   camera(
     eyeX,
@@ -70,7 +97,8 @@ void draw(){
 }
 
 void mouseDragged(){
-  eyeZ = eyeZ + (pmouseX - mouseX) * star.zoomSpeed;
+  //eyeZ = eyeZ + (pmouseX - mouseX) * star.zoomSpeed;
+  
     
 }
 
