@@ -59,7 +59,7 @@ for (Hand hand : leap.getHands()){
   println(handRoll);
   //eyeZ = eyeZ + (handRoll/5) * star.zoomSpeed;
   //eyeZ = eyeZ + (handYaw/5) * star.zoomSpeed;
-  eyeZ = eyeZ + ((handPitch/5*-1)) * star.zoomSpeed;
+  eyeZ = eyeZ - (handPitch/5) * star.zoomSpeed;
 }
 
 for (Finger finger : leap.getFingers()){
