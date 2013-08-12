@@ -149,7 +149,7 @@ void drawDistance(){
       floatDistanceinLightYears = round(map(eyeZ,7070,60,82,0));
      // text("this.message + move rect farther up screen", 600, height/2-2);
       text("You are now " + distanceinLightYears + " lightyears from home", 638, height/2+3);
-      text("Drag left and right to go home", 638, height/2+8);
+      text("Tilt your hand sideways like you're turning a plane, to travel home", 610, height/2+8);
       text("Sol", 683, height/2+5.5);
       println(mouseX + ":" + eyeZ);
   popMatrix();
