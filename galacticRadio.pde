@@ -1,6 +1,8 @@
 import de.voidplus.leapmotion.*;
-LeapMotion leap;
 import development.*;
+
+LeapMotion leap;
+
 
 Table starData;
 Star star;
@@ -57,6 +59,7 @@ for (Hand hand : leap.getHands()){
   float handYaw = hand.getYaw();
   float handPitch = hand.getPitch();
   println(handRoll);
+  
   //eyeZ = eyeZ + (handRoll/5) * star.zoomSpeed;
   //eyeZ = eyeZ + (handYaw/5) * star.zoomSpeed;
   eyeZ = eyeZ - (handPitch/5) * star.zoomSpeed;
@@ -64,6 +67,7 @@ for (Hand hand : leap.getHands()){
 
 for (Finger finger : leap.getFingers()){
   //finger.draw();
+  
   int fingerID = finger.getId();
   PVector fingerDirection = finger.getDirection();
   //centerX = fingerDirection.x*10;
