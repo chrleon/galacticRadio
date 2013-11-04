@@ -48,7 +48,7 @@ class Star {
     
     imageMode(CENTER);
     
-    starData = loadTable("hygxyz-3000stars.csv", "header");
+    starData = loadTable("data/hygxyz-3000stars.csv", "header");
     starDisc = loadImage("img/stardisc.png");
 
 
