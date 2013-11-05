@@ -3,7 +3,6 @@ import development.*;
 
 LeapMotion leap;
 
-
 Table starData;
 Star star;
 
@@ -15,7 +14,7 @@ float eyeZ;
 
 PImage starDisc;
 
-
+int numFingers;
 
 
 void setup(){
@@ -28,20 +27,19 @@ void setup(){
   openSansLight8 = loadFont("fonts/OpenSans-Light-8.vlw");
 
   star = new Star(); 
-  
   leap = new LeapMotion(this);
-
 }
-
-
-
 
 
 void draw(){
   background(0);
   lights();
 
-
+  // sjekk array fra csv og tegn en ny stjerne på hvert punkt.  
+  star.display();
+    //println(frameRate);
+  star.drawDistance();
+    //radio0.setVolume(star.radio0volume);
 
   // cameradata
     float eyeX = width/2.0;
@@ -58,18 +56,23 @@ for (Hand hand : leap.getHands()){
   float handRoll = hand.getRoll();
   float handYaw = hand.getYaw();
   float handPitch = hand.getPitch();
-  println(handRoll);
+  
+
+  numFingers = hand.countFingers();
   
   //eyeZ = eyeZ + (handRoll/5) * star.zoomSpeed;
   //eyeZ = eyeZ + (handYaw/5) * star.zoomSpeed;
-  eyeZ = eyeZ - (handPitch/5) * star.zoomSpeed;
+  if( numFingers > 2) {
+    eyeZ = eyeZ - (handPitch/8) * star.zoomSpeed;
+  }
 }
 
 for (Finger finger : leap.getFingers()){
-  //finger.draw();
-  
+  if(numFingers == 1) {
+    finger.draw();
+  }
   int fingerID = finger.getId();
-  PVector fingerDirection = finger.getDirection();
+//  PVector fingerDirection = finger.getDirection();
   //centerX = fingerDirection.x*10;
   //centerY = fingerDirection.y*10;
 }
@@ -85,21 +88,7 @@ for (Finger finger : leap.getFingers()){
     upY,
     upZ
     );
-  
-
-
-  
-  // sjekk array fra csv og tegn en ny stjerne på hvert punkt.  
-  star.display();
-    //println(frameRate);
-    star.drawDistance();
-    //radio0.setVolume(star.radio0volume);
-   
-  
-  
-
 }
-
 void mouseDragged(){
   //eyeZ = eyeZ + (pmouseX - mouseX) * star.zoomSpeed;
   

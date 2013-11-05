@@ -113,7 +113,7 @@ class Star {
                   text("Starname: " + properName, 0, 7, 0);
                   text("Distance from Earth: " + distance + " lightyears", 0, 11, 0);
               popMatrix();
-            println(message);  
+            //println(message);  
            }
              
       popMatrix();
@@ -151,9 +151,9 @@ void drawDistance(){
       text("You are now " + distanceinLightYears + " lightyears from home", 638, height/2+3);
       text("Tilt your hand sideways like you're turning a plane, to travel home", 610, height/2+8);
       text("Sol", 683, height/2+5.5);
-      println(mouseX + ":" + eyeZ);
+      //println(mouseX + ":" + eyeZ);
   popMatrix();
-  println(eyeZ);
+  //println(eyeZ);
     }
 
 
