@@ -1,5 +1,4 @@
 import de.voidplus.leapmotion.*;
-import development.*;
 
 LeapMotion leap;
 
@@ -18,6 +17,7 @@ int numFingers;
 
 
 void setup(){
+  frameRate(60);
   size(1280,699, P3D); // 699 so that I can screencapture including the chrome at the top and still get a 720P file
   colorMode(HSB, 360, 100, 100, 1);
   eyeZ = 7070;
@@ -60,11 +60,14 @@ for (Hand hand : leap.getHands()){
 
   numFingers = hand.countFingers();
   
-  //eyeZ = eyeZ + (handRoll/5) * star.zoomSpeed;
-  //eyeZ = eyeZ + (handYaw/5) * star.zoomSpeed;
-  if( numFingers > 2) {
-    eyeZ = eyeZ - (handPitch/8) * star.zoomSpeed;
+  eyeZ = eyeZ - (handRoll/5) * star.zoomSpeed;
+  if (numFingers < 2) {
+    eyeZ = eyeZ - handRoll / 10 * star.zoomSpeed;
   }
+  //eyeZ = eyeZ + (handYaw/5) * star.zoomSpeed;
+//  if( numFingers > 2) {
+  //  eyeZ = eyeZ - (handPitch/8) * star.zoomSpeed;
+  //}
 }
 
 for (Finger finger : leap.getFingers()){
@@ -94,5 +97,3 @@ void mouseDragged(){
   
     
 }
-
-

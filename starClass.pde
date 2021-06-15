@@ -159,9 +159,3 @@ void drawDistance(){
 
 
 }
-
-
-
-
-
-
